@@ -39,16 +39,15 @@ export class LoginPage implements OnInit {
         username : this.usernameText,
         password : Md5.init(this.passwordText),
       };
-      console.log(user);
+      // console.log(user);
       this.registerSrv.ceklogin(user).subscribe(
         res=> {
-        console.log(res);
+        // console.log(res);
         if(res.success == false){
-          console.log('tes');
           this.errorText = "Email atau password salah";
         }
         else{
-          console.log(res.uid);
+          // console.log(res.uid);
           this.toHomePage(res.uid);
         }}
       );

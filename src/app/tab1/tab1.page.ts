@@ -17,12 +17,11 @@ export class Tab1Page {
   public currentCategory: string = "BANGUNAN IKONIK";
   public currentProgress: number = 2; // Progress user
   public totalLevel: number = 10; // Total level dari kategori terakhir
+  public arrayOfKategori = [];
 
-  public arrayOfKategori = []; 
   constructor(public storage : Storage, public registerSrv : RegisterService) {
       //get user id dari halaman register or login
       storage.get('userId').then((parameter) => {
-      console.log('Received Parameter: ' + parameter);
       this.getCategory(parameter);
       this.showScore(parameter);
     });
@@ -35,15 +34,15 @@ export class Tab1Page {
   getCategory(userId){
     this.registerSrv.getKategori(userId).subscribe(
       res=> {
-        console.log(res);
+        //console.log(res);
         this.showCategory(res);
+        this.storage.set('kategoriId',res.kategori_id);
     });
   }
 
   showCategory(dataKategori : any){
     var len = dataKategori.length;
     var color = "";
-    console.log(len);
     for (var i =0; i<len; i++){
       if(dataKategori[i].progress != 100){
         color = "#FBDCDB";
@@ -63,8 +62,9 @@ export class Tab1Page {
   showScore(userId){
     this.registerSrv.getTotalScore(userId).subscribe(
       res=> {
-        console.log(res);
+        //console.log(res);
         this.reward = res.total_reward;
+        this.storage.set('reward', this.reward);
     });
   }
 

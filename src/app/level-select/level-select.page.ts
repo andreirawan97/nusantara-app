@@ -14,70 +14,61 @@ export class LevelSelectPage implements OnInit {
   public falseSource = FalseIcon;
   public previousSource = PreviousIcon;
   public userId : string;
+  public kategoriId: string;
   public nama_kategori : string;
 
-  public kategoriId: string;
-  public mockData = [
-    {
-      judul: "Soal 1",
-      id_soal: "1",
-      is_done: true,
-      is_right: true,
-      ordering: 1,
-    },
-    {
-      judul: "Soal 2",
-      id_soal: "2",
-      is_done: true,
-      is_right: false,
-      ordering: 2,
-    },
-    {
-      judul: "Soal 3",
-      id_soal: "3",
-      is_done: false,
-      is_right: true,
-      ordering: 3,
-    },
-  ];
+ 
+  public mockData = [];
 
   constructor(
     private activatedRoute: ActivatedRoute, 
     private router: Router, 
     private storage : Storage,
     private registerSrv : RegisterService) {
-    storage.get('userId').then((val)=>{
-      console.log('User idnya :',val);
-      this.userId = val;
-    })
   }
 
   ngOnInit() {
+    this.storage.get('userId').then((val)=>{
+      this.userId = val;
+    })
     this.kategoriId = this.activatedRoute.snapshot.paramMap.get("kategoriId");
-    console.log(this.kategoriId);
-    this.getCategory();
+    this.getCategory(this.kategoriId);
   }
 
-
-
-  getCategory() {
+  getCategory(kategoriId : any) { 
     this.storage.get('userId').then((val)=>{
-      console.log('disini kebaca :',val);
       this.userId = val;
       this.getName(this.userId);
-    })
+      this.registerSrv.getSoalPerkategori(val,kategoriId).subscribe(
+        res=>{
+          this.showSoalPerkategori(res);
+        }
+      );
+    }) 
   }
 
   getName(userId){
     this.registerSrv.getKategori(userId).subscribe(
       res=> {
-        console.log(res);
         for(let i=0; i<res.length;i++){
           if(this.kategoriId === res[i].kategori_id){
             this.nama_kategori = res[i].nama_kategori;
           }
         }
     });
+  }
+
+  showSoalPerkategori(data : any){
+    var len = data.soal.length;
+    for(let i=0; i<len ; i++){
+      this.mockData.push({
+        judul: data.soal[i].judul,
+        id_soal: data.soal[i].id_soal,
+        is_done: data.soal[i].is_done,
+        is_right: false,
+        ordering: data.soal[i].ordering,
+      });
+    } 
   }
 
   goBack() {
