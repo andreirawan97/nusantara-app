@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Md5 } from "md5-typescript";
 import { RegisterService } from '../service/register.service';
 import { Storage } from '@ionic/storage';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,8 @@ export class RegisterPage implements OnInit {
   constructor(
     private route : Router,
     private registerSrv : RegisterService,
-    private storage : Storage) { }
+    private storage : Storage,
+    private toast : ToastController) { }
 
   ngOnInit() {
 
@@ -40,11 +42,13 @@ export class RegisterPage implements OnInit {
         username : this.usernameText,
         password : Md5.init(this.passwordText),
       };
-      console.log(user);
       this.registerSrv.registerUser(user).subscribe(
-        res=> {console.log(res);}
+        res=> {
+          //console.log(res);
+          this.registerHandler(res.success, res.status);
+          this.storage.set('userId', res.uid);
+        }
       );
-      this.route.navigateByUrl('/tabs');
     }
   }
 
@@ -52,4 +56,21 @@ export class RegisterPage implements OnInit {
     this.route.navigateByUrl('/login');
   }
 
+  registerHandler(successMessage : any, registerStatus : any){
+    if(!successMessage){
+      this.presentToast(registerStatus);
+    }
+    else {
+      this.presentToast(registerStatus);
+      this.route.navigateByUrl('/tabs');
+    }
+  }
+
+  async presentToast(text : any) {
+    const toast = await this.toast.create({
+      message: text,
+      duration: 2000
+    });
+    toast.present();
+  }
 }

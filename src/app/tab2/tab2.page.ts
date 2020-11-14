@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Storage } from '@ionic/storage';
 import { MaungTrophy} from 'src/assets';
 import { LeaderboardService } from '../service/leaderboard.service';
 
@@ -12,9 +13,11 @@ export class Tab2Page {
   public maungTrophyImage = MaungTrophy;
   public showLeaderboard = true;
   listLeaderboard: any;
+  public reward : number = 0;
 
   constructor(
-    private leaderboardService : LeaderboardService
+    private leaderboardService : LeaderboardService,
+    private storage : Storage
   ) {}
   
   ngOnInit() {
@@ -23,5 +26,10 @@ export class Tab2Page {
         this.listLeaderboard = res;
       }
     );
+    this.storage.get('reward').then((parameter) => {
+      this.reward = parameter;
+    }); 
   }
+
+  
 }

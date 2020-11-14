@@ -13,8 +13,7 @@ export class RegisterService {
   ) { }
 
   registerUser(newUser : any){
-    console.log('test');
-    console.log(newUser);
+    //console.log(newUser);
     const user = {
       image : newUser.image,
       nama : newUser.nama,
@@ -25,10 +24,6 @@ export class RegisterService {
     const headers = new HttpHeaders();
     headers.append('Content-Type,', 'application/x-www-form-urlencoded');
     const options = {headers: headers};
-    console.log(options);
-
-    
-    console.log(user);
     return this.http.post<any>('https://us-central1-nusantara-8e7ba.cloudfunctions.net/api/register',user,options);
   }
 
@@ -45,10 +40,11 @@ export class RegisterService {
   }
 
   getKategori(userId : any){
-    console.log('getKategori-Service');
     const data = {
       uid : userId,
     };
+    console.log("GetKategori");
+    console.log(data);
     const headers = new HttpHeaders();
     headers.append('Content-Type,', 'application/x-www-form-urlencoded');
     const options = {headers: headers};
@@ -56,13 +52,27 @@ export class RegisterService {
   }
 
   getTotalScore(userId : any){
-    console.log('getTotalScore-Service');
     const data = {
       uid : userId,
     };
+    console.log("GetTotalScore");
+    console.log(data);
     const headers = new HttpHeaders();
     headers.append('Content-Type,', 'application/x-www-form-urlencoded');
     const options = {headers: headers};
     return this.http.post<any>('https://us-central1-nusantara-8e7ba.cloudfunctions.net/api/getTotalScore',data,options); 
+  }
+
+  getSoalPerkategori(userId : any, kategoriId : any){
+    const data = {
+      uid : userId,
+      id_kategori : kategoriId
+    };
+    console.log("GetSoalPerkategori");
+    console.log(data);
+    const headers = new HttpHeaders();
+    headers.append('Content-Type,', 'application/x-www-form-urlencoded');
+    const options = {headers: headers};
+    return this.http.post<any>('https://us-central1-nusantara-8e7ba.cloudfunctions.net/api/getSoalPerkategori',data,options); 
   }
 }
