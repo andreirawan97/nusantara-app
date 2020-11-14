@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MaungImage } from "../../assets";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab3',
@@ -7,6 +9,11 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  public maungSource = MaungImage;
+  constructor(private route : Router) {}
+
+  toLogout(){
+    this.route.navigateByUrl('/register');
+  }
 
 }
