@@ -1,0 +1,93 @@
+<ion-content>
+  <div
+    style="
+      display: flex;
+      height: 50%;
+      background-color: #9ad3bd;
+      align-items: flex-start;
+      border-bottom-left-radius: 32px;
+      border-bottom-right-radius: 32px;
+      flex-direction: column;
+    "
+  >
+    <div class="header">
+      <ion-chip class="score">
+        <ion-avatar>
+          <img style="background-color: white" src="../../assets/score.png" />
+        </ion-avatar>
+        <ion-label style="width: 45px; text-align: right; color: #f3eac2"
+          >12345</ion-label
+        >
+      </ion-chip>
+      <ion-avatar class="profilePic">
+        <img
+          src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
+        />
+      </ion-avatar>
+    </div>
+
+    <div
+      style="
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        margin-top: 32px;
+      "
+    >
+      <img style="background-color: white; width: 60%" src="{{padangImage}}" />
+    </div>
+  </div>
+
+  <div
+    style="
+      display: flex;
+      height: 50%;
+      padding: 32px 24px 32px 24px;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    "
+  >
+    <ion-label style="font-size: 18px; margin-bottom: 12px">{{soal}}</ion-label>
+
+    <div style="display: flex; flex-direction: row; width: 100%">
+      <div style="width: 50%">
+        <ion-button style="width: 100%; height: 42px; font-size: 14px"
+          >A. {{pilihan[0]}}</ion-button
+        >
+      </div>
+      <div style="width: 50%; margin-left: 12px">
+        <ion-button style="width: 100%; height: 42px; font-size: 14px"
+          >B. {{pilihan[1]}}</ion-button
+        >
+      </div>
+    </div>
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin-top: 8px;
+        margin-bottom: 20px;
+      "
+    >
+      <div style="width: 50%">
+        <ion-button style="width: 100%; height: 42px; font-size: 14px"
+          >C. {{pilihan[2]}}</ion-button
+        >
+      </div>
+      <div style="width: 50%; margin-left: 12px">
+        <ion-button style="width: 100%; height: 42px; font-size: 14px"
+          >D. {{pilihan[3]}}</ion-button
+        >
+      </div>
+    </div>
+
+    <ion-label style="font-size: 14px; color: #ec524b"
+      >Jawban kamu salah! Ayo coba lagi</ion-label
+    >
+    <ion-label style="font-size: 14px; color: #19c680; text-align: center"
+      >Wow keren! Jawaban kamu sudah benar!</ion-label
+    >
+  </div>
+</ion-content>
