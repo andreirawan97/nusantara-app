@@ -24,6 +24,10 @@ const routes: Routes = [
         (m) => m.LevelSelectPageModule
       ),
   },
+  {
+    path: 'level',
+    loadChildren: () => import('./level/level.module').then( m => m.LevelPageModule)
+  },
 ];
 @NgModule({
   imports: [
