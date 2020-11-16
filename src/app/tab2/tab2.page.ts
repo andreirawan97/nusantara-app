@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Storage } from '@ionic/storage';
 import { MaungTrophy} from 'src/assets';
 import { LeaderboardService } from '../service/leaderboard.service';
+import { Storage } from '@ionic/storage';
+import { RegisterService } from '../service/register.service';
 
 
 @Component({
@@ -10,26 +11,32 @@ import { LeaderboardService } from '../service/leaderboard.service';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  public maungTrophyImage = MaungTrophy;
-  public showLeaderboard = true;
-  listLeaderboard: any;
   public reward : number = 0;
+  public maungTrophyImage = MaungTrophy;
+  public showLeaderboard = false;
+  listLeaderboard: any;
 
   constructor(
     private leaderboardService : LeaderboardService,
-    private storage : Storage
+    public storage : Storage,
+    public registerSrv : RegisterService
   ) {}
   
   ngOnInit() {
-    this.leaderboardService.getKategori().subscribe(
-      res=> {
-        this.listLeaderboard = res;
-      }
-    );
-    this.storage.get('reward').then((parameter) => {
-      this.reward = parameter;
-    }); 
+    this.storage.get('reward').then((getReward) => {
+      // console.log(getReward);
+      this.reward = getReward;
+      if(this.reward != 0) this.showLeaderboard = true;
+      if(this.showLeaderboard) {
+        this.storage.get('userId').then((user_id) => {
+          // console.log(user_id);
+          this.leaderboardService.getLeaderboard(user_id).subscribe(
+            res=> {
+              this.listLeaderboard = res;
+            }
+          );
+        })
+      } 
+    });
   }
-
-  
 }

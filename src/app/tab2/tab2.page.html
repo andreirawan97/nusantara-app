@@ -5,7 +5,7 @@
         <ion-avatar>
           <img style="background-color: white" src="../../assets/score.png" />
         </ion-avatar>
-        <ion-label style="width :45px; text-align : right; color: #f3eac2">{{reward}}</ion-label>
+        <ion-label style="color: #f3eac2">{{reward}}</ion-label>
       </ion-chip>
       <ion-avatar class="profilePic">
         <img
@@ -33,15 +33,30 @@
       <ion-col size="12">
         <ion-list>
           <!-- punya orang lain -->
-          <ion-item lines="none" class="custom-item-orange" *ngFor="let e of listLeaderboard">
+          <ion-item lines="none" *ngFor="let e of listLeaderboard"
+          [ngClass]="{
+            'custom-item-green' : e.its_me,
+            'custom-item-orange' : !e.its_me
+          }">
             <ion-thumbnail class="profilePic" slot="start">
               <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
             </ion-thumbnail>
             <ion-label>
-              <p style="color: black">{{e.username}}</p>
+              <p style="color: black">{{e.nama}}</p>
               <p style="color: black">{{e.total_reward}}</p>
             </ion-label>
           </ion-item>
+
+          <!-- punya saya -->
+          <!-- <ion-item lines="none" class="custom-item-green">
+            <ion-thumbnail class="profilePic" slot="start">
+              <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
+            </ion-thumbnail>
+            <ion-label>
+              <p style="color: black">AING MAUNG</p>
+              <p style="color: black">5000</p>
+            </ion-label>
+          </ion-item> -->
         </ion-list>
       </ion-col>
     </ion-row>
