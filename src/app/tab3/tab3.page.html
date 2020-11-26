@@ -1,83 +1,85 @@
 <ion-content class="container">
   <ion-grid>
-    <ion-row class="ion-justify-content-center" style="padding-top: 50px;">
-      <ion-avatar class="image">
-        <ion-img class="circle-pic" src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"></ion-img>
-      </ion-avatar>
-    </ion-row>
-
-    <ion-row class="ion-justify-content-center" style="margin-bottom: 20px">
-      <ion-label 
-        style="
-          margin-top : 10px;
-          color: black;
-          font-size: 12px;
-          margin-bottom: 12px;"
-          (click)="changePicture()">GANTI FOTO PROFIL</ion-label>
-    </ion-row>
-    
-    <ion-row class="ion-justify-content-center" style="margin-bottom: 20px">
-      <ion-col size="10" offset="1">
-        <ion-label style="color: #ec524b;">Nama</ion-label>
-      </ion-col>
-        <div class="textFieldContainer">
-          <ion-input
-            class="textInput"
-            placeholder="Nama"
-            [(ngModel)]= "namaText">
-          </ion-input>
-        </div>
-
-      <ion-col size="10" offset="1">  
-        <ion-label style="color: #ec524b;">Username</ion-label>
-      </ion-col>
-        <div class="textFieldContainer">
-          <ion-input 
-            class="textInput"
-            placeholder="Username"
-            [(ngModel)]= "usernameText">
-          </ion-input>
-        </div>
+    <div>
+      <ion-row class="ion-justify-content-center" style="padding-top: 50px;">
+        <ion-avatar class="image">
+          <ion-img class="circle-pic" ng-src=""></ion-img>
+        </ion-avatar>
+      </ion-row>
+  
+      <ion-row 
+        class="ion-justify-content-center" 
+        style="margin-bottom: 20px"
+        >
+        <ion-label 
+          style="
+            margin-top : 10px;
+            color: black;
+            font-size: 12px;
+            margin-bottom: 12px;"
+            (click)="changePicture()">GANTI FOTO PROFIL</ion-label>
+      </ion-row>
       
-      <ion-col size="10" offset="1">
-        <ion-label style="color: #ec524b;">Password</ion-label>
-      </ion-col>
-        <div class="textFieldContainer">
-          <ion-input 
-            class="textInput"
-            placeholder="Password"
-            [(ngModel)]= "passwordText"
-            type="password">
-          </ion-input>
-        </div>
-    </ion-row>
-
-    <ion-row class="ion-justify-content-center">
-      <ion-button
-        (click)="simpanProfile()"
-        style="
-          width: 40%; 
-          --border-radius: 25px;
-          --background: #9ad3bc;
-          --background-activated: #9ad3bc;
-          --background-focused: #9ad3bc;
-          --color: black;"
-      >SIMPAN
-      </ion-button>
-    </ion-row>
-
-    <ion-row class="ion-justify-content-center">
-      <ion-button
-        (click)="toLogout()"
-        style="
-          width: 40%; 
-          --border-radius: 25px;
-          --background: #ec524b;
-          --background-activated: #ec524b;
-          --background-focused: #ec524b;
-          --color: white;"
-      >KELUAR
-      </ion-button>
-    </ion-row>
+      <ion-row class="ion-justify-content-center" style="margin-bottom: 20px">
+        <ion-col size="10" offset="1">
+          <ion-label style="color: #ec524b;">Nama</ion-label>
+        </ion-col>
+          <div class="textFieldContainer">
+            <ion-input
+              class="textInput"
+              placeholder="Nama">
+            </ion-input>
+          </div>
+  
+        <ion-col size="10" offset="1">  
+          <ion-label style="color: #ec524b;">Username {{username}}</ion-label>
+        </ion-col>
+          <div class="textFieldContainer">
+            <ion-input 
+              class="textInput"
+              placeholder="Username">
+            </ion-input>
+          </div>
+        
+        <ion-col size="10" offset="1">
+          <ion-label style="color: #ec524b;">Password</ion-label>
+        </ion-col>
+          <div class="textFieldContainer">
+            <ion-input 
+              class="textInput"
+              placeholder="Password"
+              type="password">
+            </ion-input>
+          </div>
+      </ion-row>
+  
+      <ion-row class="ion-justify-content-center">
+        <ion-button
+          (click)="simpanProfile()"
+          style="
+            width: 40%; 
+            --border-radius: 25px;
+            --background: #9ad3bc;
+            --background-activated: #9ad3bc;
+            --background-focused: #9ad3bc;
+            --color: black;"
+        >SIMPAN
+        </ion-button>
+      </ion-row>
+  
+      <ion-row class="ion-justify-content-center">
+        <ion-button
+          (click)="toLogout()"
+          style="
+            width: 40%; 
+            --border-radius: 25px;
+            --background: #ec524b;
+            --background-activated: #ec524b;
+            --background-focused: #ec524b;
+            --color: white;"
+        >KELUAR
+        </ion-button>
+      </ion-row>
+    </div>
   </ion-grid>
 </ion-content>
