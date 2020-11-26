@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { MaungImage } from "../../assets";
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { EditProfileService } from '../service/edit-profile.service';
+import { Storage } from '@ionic/storage';
+import { RegisterService } from '../service/register.service';
 
 @Component({
   selector: 'app-tab3',
@@ -8,12 +10,37 @@ import { Router } from '@angular/router';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
+  username: string;
+  
+  constructor(
+    public storage : Storage, 
+    public registerSrv: RegisterService, 
+    private route : Router) 
+    {
+      storage.get('user').then((parameter) => {
+        this.showNama(parameter);
+      });
+  }
 
-  public maungSource = MaungImage;
-  constructor(private route : Router) {}
+  ngOnInit() {}
 
+  showNama(user : any){
+    const data = {
+      username : this.username,
+    };
+    console.log("cek");
+    console.log(data);
+    this.registerSrv.ceklogin(user).subscribe(
+      res=> {
+        console.log("cek1");
+        console.log(res);
+        this.storage.set('username', this.username);
+      }
+    )
+  }
+  
   toLogout(){
     this.route.navigateByUrl('/register');
   }
-
 }
+
