@@ -44,7 +44,7 @@ export class Tab1Page {
     var len = dataKategori.length;
     var color = "";
     for (var i =0; i<len; i++){
-      if(dataKategori[i].progress != 100){
+      if(dataKategori[i].progress != 1){
         color = "#FBDCDB";
       }
       else{

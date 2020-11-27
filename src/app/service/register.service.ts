@@ -7,6 +7,8 @@ import { map,catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class RegisterService {
+  public localhost = "http://localhost:5001/nusantara-8e7ba/us-central1/api/";
+  public production = "https://us-central1-nusantara-8e7ba.cloudfunctions.net/api/";
 
   constructor(
     private http : HttpClient
@@ -24,7 +26,7 @@ export class RegisterService {
     const headers = new HttpHeaders();
     headers.append('Content-Type,', 'application/x-www-form-urlencoded');
     const options = {headers: headers};
-    return this.http.post<any>('https://us-central1-nusantara-8e7ba.cloudfunctions.net/api/register',user,options);
+    return this.http.post<any>(this.production+'register',user,options);
   }
 
   ceklogin(user : any){
@@ -36,7 +38,7 @@ export class RegisterService {
     const headers = new HttpHeaders();
     headers.append('Content-Type,', 'application/x-www-form-urlencoded');
     const options = {headers: headers};
-    return this.http.post<any>('https://us-central1-nusantara-8e7ba.cloudfunctions.net/api/login',LoginUser,options);
+    return this.http.post<any>(this.production+'login',LoginUser,options);
   }
 
   getKategori(userId : any){
@@ -48,7 +50,7 @@ export class RegisterService {
     const headers = new HttpHeaders();
     headers.append('Content-Type,', 'application/x-www-form-urlencoded');
     const options = {headers: headers};
-    return this.http.post<any>('https://us-central1-nusantara-8e7ba.cloudfunctions.net/api/getKategori',data,options); 
+    return this.http.post<any>(this.production+'getKategori',data,options); 
   }
 
   getTotalScore(userId : any){
@@ -60,7 +62,7 @@ export class RegisterService {
     const headers = new HttpHeaders();
     headers.append('Content-Type,', 'application/x-www-form-urlencoded');
     const options = {headers: headers};
-    return this.http.post<any>('https://us-central1-nusantara-8e7ba.cloudfunctions.net/api/getTotalScore',data,options); 
+    return this.http.post<any>(this.production+'getTotalScore',data,options); 
   }
 
   getSoalPerkategori(userId : any, kategoriId : any){
@@ -73,6 +75,34 @@ export class RegisterService {
     const headers = new HttpHeaders();
     headers.append('Content-Type,', 'application/x-www-form-urlencoded');
     const options = {headers: headers};
-    return this.http.post<any>('https://us-central1-nusantara-8e7ba.cloudfunctions.net/api/getSoalPerkategori',data,options); 
+    return this.http.post<any>(this.production+'getSoalPerkategori',data,options); 
   }
+
+  getSoal(soalId : any){
+    const data = {
+      id_soal : soalId
+    };
+    console.log("getSoal");
+    console.log(data);
+    const headers = new HttpHeaders();
+    headers.append('Content-Type,', 'application/x-www-form-urlencoded');
+    const options = {headers: headers};
+    return this.http.post<any>(this.production+'getSoal',data,options); 
+  }
+
+  jawabSoal(soalId:any , userId :any, jawab : any){
+    const data = {
+      id_soal : soalId,
+      uid : userId,
+      jawab : jawab
+    };
+    console.log("jawabSoal");
+    console.log(data);
+    const headers = new HttpHeaders();
+    headers.append('Content-Type,', 'application/x-www-form-urlencoded');
+    const options = {headers: headers};
+    return this.http.post<any>(this.production+'jawabSoal',data,options); 
+  }
+
 }
+

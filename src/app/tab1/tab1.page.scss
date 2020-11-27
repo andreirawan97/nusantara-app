@@ -60,3 +60,10 @@ $font-family : 'KG Corner of the Sky';
       flex: 0 0 auto;
     }
 }
+
+ion-avatar img  {
+    width:100% !important;
+    height : 100% !important;
+    max-width: 500px !important;  //any size
+    max-height: 500px !important; //any size
+}

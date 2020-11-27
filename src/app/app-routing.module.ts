@@ -25,7 +25,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'level',
+    path: 'level/:soalId',
     loadChildren: () => import('./level/level.module').then( m => m.LevelPageModule)
   },
 ];
