@@ -22,30 +22,34 @@
       
       <ion-row class="ion-justify-content-center" style="margin-bottom: 20px">
         <ion-col size="10" offset="1">
-          <ion-label style="color: #ec524b;">Nama</ion-label>
+          <ion-label style="color: #ec524b;">Nama {{fullname}}</ion-label>
         </ion-col>
           <div class="textFieldContainer">
             <ion-input
+              [(ngModel)]="nameText"
               class="textInput"
               placeholder="Nama">
             </ion-input>
           </div>
   
-        <ion-col size="10" offset="1">  
-          <ion-label style="color: #ec524b;">Username {{username}}</ion-label>
+        <!-- <ion-col size="10" offset="1">  
+          <ion-label style="color: #ec524b;">Username </ion-label>
         </ion-col>
           <div class="textFieldContainer">
             <ion-input 
+              [(ngModel)]="usernameText"
               class="textInput"
-              placeholder="Username">
+              placeholder="Username"
+              type="text">
             </ion-input>
           </div>
-        
+         -->
         <ion-col size="10" offset="1">
-          <ion-label style="color: #ec524b;">Password</ion-label>
+          <ion-label style="color: #ec524b;">Password Baru</ion-label>
         </ion-col>
           <div class="textFieldContainer">
             <ion-input 
+              [(ngModel)]="passwordText"
               class="textInput"
               placeholder="Password"
               type="password">
