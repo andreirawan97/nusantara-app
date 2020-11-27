@@ -14,10 +14,7 @@ export class TabsPage {
   public tabsLeaderboard = tabsLeaderboard;
   public tabsProfile = MaungImage;
   
-  constructor(public storage : Storage) {
-    storage.get('userId').then((parameter) => {
-    console.log('Received Parameter: ' + parameter);
-  });
-}
+  constructor(public storage : Storage) {}
+
 
 }

@@ -16,14 +16,12 @@
           <img style="background-color: white" src="../../assets/score.png" />
         </ion-avatar>
         <ion-label style="width: 45px; text-align: right; color: #f3eac2"
-          >12345</ion-label
+          >{{reward}}</ion-label
         >
       </ion-chip>
-      <ion-avatar class="profilePic">
-        <img
-          src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
+        <img (click)="toCategory()"
+          src="../../assets/close.png"
         />
-      </ion-avatar>
     </div>
 
     <div
@@ -34,7 +32,7 @@
         margin-top: 32px;
       "
     >
-      <img style="background-color: white; width: 60%" src="{{padangImage}}" />
+      <img style="background-color: white; width: 60%" src="{{soalImage}}" />
     </div>
   </div>
 
@@ -48,16 +46,16 @@
       width: 100%;
     "
   >
-    <ion-label style="font-size: 18px; margin-bottom: 12px">{{soal}}</ion-label>
+    <center><ion-label style="font-size: 18px; margin-bottom: 12px;">{{soal}}</ion-label></center>
 
-    <div style="display: flex; flex-direction: row; width: 100%">
+    <div style="margin-top : 12px; display: flex; flex-direction: row; width: 100%;">
       <div style="width: 50%">
-        <ion-button style="width: 100%; height: 42px; font-size: 14px"
+        <ion-button (click)="jawabSoal(pilihan[0])" style="width: 100%; height: 42px; font-size: 14px; color : #142850;"
           >A. {{pilihan[0]}}</ion-button
         >
       </div>
       <div style="width: 50%; margin-left: 12px">
-        <ion-button style="width: 100%; height: 42px; font-size: 14px"
+        <ion-button (click)="jawabSoal(pilihan[1])" style="width: 100%; height: 42px; font-size: 14px; color : #142850;"
           >B. {{pilihan[1]}}</ion-button
         >
       </div>
@@ -72,21 +70,29 @@
       "
     >
       <div style="width: 50%">
-        <ion-button style="width: 100%; height: 42px; font-size: 14px"
+        <ion-button (click)="jawabSoal(pilihan[2])" style="width: 100%; height: 42px; font-size: 14px; color : #142850;"
           >C. {{pilihan[2]}}</ion-button
         >
       </div>
       <div style="width: 50%; margin-left: 12px">
-        <ion-button style="width: 100%; height: 42px; font-size: 14px"
+        <ion-button (click)="jawabSoal(pilihan[3])" style="width: 100%; height: 42px; font-size: 14px; color : #142850;"
           >D. {{pilihan[3]}}</ion-button
         >
       </div>
     </div>
 
-    <ion-label style="font-size: 14px; color: #ec524b"
+    <div>
+      <center>
+        <ion-button [hidden]=prevHidden (click)="kembali()" style= "font-size: 12px; margin-bottom: 12px;">Kembali</ion-button>
+        <ion-button [hidden]=nextHidden (click)="lewati()" style= "font-size: 12px; margin-bottom: 12px;">Lewati</ion-button>
+      </center>
+    </div>
+    
+
+    <ion-label [hidden]=isFalse style="font-size: 14px; color: #ec524b"
       >Jawban kamu salah! Ayo coba lagi</ion-label
     >
-    <ion-label style="font-size: 14px; color: #19c680; text-align: center"
+    <ion-label [hidden]=isTrue style="font-size: 14px; color: #19c680; text-align: center"
       >Wow keren! Jawaban kamu sudah benar!</ion-label
     >
   </div>

@@ -16,6 +16,7 @@ export class LevelSelectPage implements OnInit {
   public userId : string;
   public kategoriId: string;
   public nama_kategori : string;
+  public tesId;
 
  
   public mockData = [];
@@ -25,6 +26,7 @@ export class LevelSelectPage implements OnInit {
     private router: Router, 
     private storage : Storage,
     private registerSrv : RegisterService) {
+      
   }
 
   ngOnInit() {
@@ -32,6 +34,8 @@ export class LevelSelectPage implements OnInit {
       this.userId = val;
     })
     this.kategoriId = this.activatedRoute.snapshot.paramMap.get("kategoriId");
+    // console.log("tes Id kategori :",this.kategoriId);
+    this.storage.set("id_kategori",this.kategoriId);
     this.getCategory(this.kategoriId);
   }
 
@@ -65,10 +69,16 @@ export class LevelSelectPage implements OnInit {
         judul: data.soal[i].judul,
         id_soal: data.soal[i].id_soal,
         is_done: data.soal[i].is_done,
-        is_right: false,
+        is_right: data.soal[i].is_right,
         ordering: data.soal[i].ordering,
       });
     } 
+  }
+
+  toSoal(id_soal : any){
+    this.storage.set("id_soal",id_soal);
+    // console.log("id soal :",id_soal);
+    this.router.navigate(['/level/' + id_soal]);
   }
 
   goBack() {
