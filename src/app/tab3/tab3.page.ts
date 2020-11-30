@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { EditProfileService } from '../service/edit-profile.service';
 import { Storage } from '@ionic/storage';
 import { RegisterService } from '../service/register.service';
 

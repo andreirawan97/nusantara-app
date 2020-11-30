@@ -1,9 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from '@angular/router';
+import { CorrectIcon, FalseIcon, PreviousIcon } from "src/assets";
+import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-
-import { PadangImage } from "src/assets";
-import { runInThisContext } from 'vm';
 import { RegisterService } from '../service/register.service';
 
 @Component({
@@ -11,7 +10,10 @@ import { RegisterService } from '../service/register.service';
   templateUrl: "./level.page.html",
   styleUrls: ["./level.page.scss"],
 })
+
 export class LevelPage implements OnInit {
+  public correctSource = CorrectIcon;
+  public falseSource = FalseIcon;
   public prevHidden;
   public nextHidden;
   public isTrue = true;
@@ -30,7 +32,8 @@ export class LevelPage implements OnInit {
   constructor( 
     private router : Router,
     private storage : Storage,
-    private registerSrv : RegisterService
+    private registerSrv : RegisterService,
+    public alertController: AlertController
   ) {
     storage.get('userId').then((parameter) => {
       this.showScore(parameter);
@@ -86,13 +89,9 @@ export class LevelPage implements OnInit {
   }
 
   lewati(){
-    if(!this.next){
-      //console.log("Ini adalah soal terakhir");
-    }
-    else{
       this.soalId = this.next;
-      this.showSoal(this.next);
-    }
+      this.storage.set('id_soal', this.soalId);
+      this.router.navigate(['/level/' + this.soalId]);
   }
 
   kembali(){
@@ -108,14 +107,17 @@ export class LevelPage implements OnInit {
   jawabSoal(jawaban : any){
     this.registerSrv.jawabSoal(this.soalId,this.userId,jawaban).subscribe(
       res=>{
-        if(res.is_right){
-          this.isTrue = false;
-          this.isFalse = true;
-        }
-        else{
-          this.isFalse = false;
-          this.isTrue = true;
-        }
+        console.log(res);
+          if(res.is_right){
+            if(this.next)
+            this.presentAlertRightAnswer(res.info, res.reward);
+            else
+            this.presentAlertLastQuestion(res.info, res.reward);
+          }
+          else {
+            this.presentAlertWrongAnswer(res.info)
+          }
+          
       }
     );
   }
@@ -127,6 +129,73 @@ export class LevelPage implements OnInit {
         this.reward = res.total_reward;
         this.storage.set('reward', this.reward);
     });
+  }
+
+  async presentAlertRightAnswer(info :any, reward : any) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: info,
+      subHeader: `Kamu memperoleh score sebesar ` + reward,
+      message: `<img class="alertImage" src="${this.correctSource}" >`,
+      buttons: [
+        {
+          text: 'Tetap Disini',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Lanjut',
+          handler: () => {
+            this.lewati();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async presentAlertWrongAnswer(info :any) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: info,
+      message: `<img class="alertImage" src="${this.falseSource}" >`,
+      buttons: [
+        {
+          text: 'Coba Lagi',
+          role: 'cancel',
+          cssClass: 'primary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async presentAlertLastQuestion(info :any, reward : any) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header : info,
+      subHeader: `Kamu memperoleh score sebesar ` + reward,
+      message: `<img class="alertImage" src="${this.correctSource}" >`,
+      buttons: [
+        {
+          text: 'Tetap Disini',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 

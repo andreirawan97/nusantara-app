@@ -15,7 +15,6 @@ export class RegisterService {
   ) { }
 
   registerUser(newUser : any){
-    //console.log(newUser);
     const user = {
       image : newUser.image,
       nama : newUser.nama,
