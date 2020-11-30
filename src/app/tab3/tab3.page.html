@@ -2,8 +2,12 @@
   <ion-grid>
     <div>
       <ion-row class="ion-justify-content-center" style="padding-top: 50px;">
-        <ion-avatar class="image">
+        <ion-avatar *ngIf="!photo" class="image">
           <ion-img class="circle-pic" ng-src=""></ion-img>
+        </ion-avatar>
+
+        <ion-avatar *ngIf="photo" class="image">
+          <img class="circle-pic" [src]="photo"/>
         </ion-avatar>
       </ion-row>
   
@@ -18,6 +22,7 @@
             font-size: 12px;
             margin-bottom: 12px;"
             (click)="changePicture()">GANTI FOTO PROFIL</ion-label>
+        <input type="file" *ngIf="isDesktop" #filePicker (change)="onFileChoose($event)"/>
       </ion-row>
       
       <ion-row class="ion-justify-content-center" style="margin-bottom: 20px">

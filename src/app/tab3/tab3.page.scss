@@ -47,6 +47,10 @@ $font-family : 'KG Corner of the Sky';
    width: 165px;
    height: 165px;
    -webkit-border-radius: 50%;
-   border-radius: 50%;
+   border-radius: 100%;
    align-content: center;
+}
+
+input[type="file"]{
+    display: none;
 }

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 
 import { PadangImage } from "src/assets";
-import { runInThisContext } from 'vm';
+// import { runInThisContext } from 'vm';
 import { RegisterService } from '../service/register.service';
 
 @Component({
