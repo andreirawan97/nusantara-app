@@ -1,0 +1,66 @@
+<ion-content class="container">
+  <ion-grid>
+    <ion-row 
+      class="ion-justify-content-center" 
+      style="margin-bottom: 20px">
+      <ion-label 
+        style="
+          padding-top : 50px;
+          color: black;
+          font-size: 20px;
+          margin-bottom: 12px;">Berikan senyum terbaikmu!
+      </ion-label>
+    </ion-row>
+    
+    <ion-row 
+      class="ion-justify-content-center">
+      <ion-avatar class="image">
+        <ion-img class="circle-pic" [src]="maungSource"></ion-img>
+      </ion-avatar>
+    </ion-row>
+    <ion-row
+      class="ion-justify-content-center" 
+      style="margin-bottom: 20px">
+      <ion-col size="10" offset="11" style="padding: 0%;">
+        <ion-button 
+          style="
+            width:20%;
+            --background: #ec524b;
+            --background-activated: #ec524b;
+            --background-focused: #ec524b;">
+          <ion-img 
+            src="assets/camera.png" 
+            style="width : 100% ; height : 100%"></ion-img>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+      
+    <ion-row 
+      class="ion-justify-content-center" 
+      style="margin-bottom: 20px">
+      <ion-button
+        style="
+          margin: 20px;
+          width: 33%; 
+          --border-radius: 25px;
+          --background: #f5b461;
+          --background-activated: #f5b461;
+          --background-focused: #f5b461;
+          --color: black;">
+          BUKA GALERI
+      </ion-button>
+        
+      <ion-button 
+        style="
+          margin: 20px;
+          width: 33%; 
+          --border-radius: 25px;
+          --background: #f5b461;
+          --background-activated: #f5b461;
+          --background-focused: #f5b461;
+          --color: black;">
+          LEWATI DULU
+      </ion-button>     
+    </ion-row>
+  </ion-grid>
+</ion-content>
