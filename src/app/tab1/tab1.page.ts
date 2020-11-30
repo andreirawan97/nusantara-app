@@ -16,19 +16,21 @@ export class Tab1Page {
   public maungSource = MaungImage;
   public currentCategory: string = "BANGUNAN IKONIK";
   public currentProgress: number = 2; // Progress user
-  public totalLevel: number = 10; // Total level dari kategori terakhir
+  public totalLevel: number = 100; // Total level dari kategori terakhir
   public arrayOfKategori = [];
 
   constructor(public storage : Storage, public registerSrv : RegisterService) {
-      //get user id dari halaman register or login
-      storage.get('userId').then((parameter) => {
-      this.getCategory(parameter);
-      this.showScore(parameter);
-    });
   }
 
   ngOnInit() {
   
+  }
+
+  ionViewWillEnter(){
+    this.storage.get('userId').then((parameter) => {
+      this.getCategory(parameter);
+      this.showScore(parameter);
+    });
   }
 
   getCategory(userId){
@@ -41,6 +43,7 @@ export class Tab1Page {
   }
 
   showCategory(dataKategori : any){
+    this.arrayOfKategori =[];
     var len = dataKategori.length;
     var color = "";
     for (var i =0; i<len; i++){
@@ -65,6 +68,9 @@ export class Tab1Page {
         //console.log(res);
         this.reward = res.total_reward;
         this.storage.set('reward', this.reward);
+        // if (this.reward === 0){
+        //   this.currentCategory = "Yuk mulai bermain dengan memilih kategori di bawah"
+        // }
     });
   }
 

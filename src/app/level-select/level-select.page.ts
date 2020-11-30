@@ -4,6 +4,7 @@ import { CorrectIcon, FalseIcon, PreviousIcon } from "src/assets";
 import { Storage } from '@ionic/storage';
 import { RegisterService } from '../service/register.service';
 
+
 @Component({
   selector: "app-level-select",
   templateUrl: "./level-select.page.html",
@@ -29,7 +30,8 @@ export class LevelSelectPage implements OnInit {
       
   }
 
-  ngOnInit() {
+  ngOnInit(){}
+  ionViewWillEnter(){
     this.storage.get('userId').then((val)=>{
       this.userId = val;
     })
@@ -63,6 +65,7 @@ export class LevelSelectPage implements OnInit {
   }
 
   showSoalPerkategori(data : any){
+    this.mockData = [];
     var len = data.soal.length;
     for(let i=0; i<len ; i++){
       this.mockData.push({
