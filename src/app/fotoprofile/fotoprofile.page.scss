@@ -1,0 +1,39 @@
+@import "../../assets/font/KGCorneroftheSky.scss";
+
+$font-family : 'KG Corner of the Sky';
+
+*{
+  font-family: $font-family;
+  font-size : 12px;
+}
+
+.container {
+    --ion-background-color: #ec524b;
+}
+  
+.buttonContainer {
+    border-radius: 20px;
+    padding: 8px;
+    background-color: #f5b461;
+}
+
+.ion-input {
+    --padding-left: 12px;
+}
+
+.image {
+    height: auto; 
+    width: auto; 
+   border: 1px solid black;
+   border-radius: 50%;
+   display: inline-block;
+   margin: auto;
+}
+
+.circle-pic{
+   width: 165px;
+   height: 165px;
+   -webkit-border-radius: 50%;
+   border-radius: 50%;
+   align-content: center;
+}

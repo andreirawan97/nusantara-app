@@ -1,6 +1,5 @@
 import { Component, ElementRef, enableProdMode, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-// import { EditProfileService } from '../service/edit-profile.service';
 import { Storage } from '@ionic/storage';
 import { RegisterService } from '../service/register.service';
 import { Md5 } from 'md5-typescript';
