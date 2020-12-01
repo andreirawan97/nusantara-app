@@ -103,5 +103,14 @@ export class RegisterService {
     return this.http.post<any>(this.production+'jawabSoal',data,options); 
   }
 
+  editProfile(user:any){
+    const data = user;
+
+    const headers = new HttpHeaders();
+    headers.append('Content-Type,', 'application/x-www-form-urlencoded');
+    const options = {headers: headers};
+    return this.http.post<any>(this.production+'editProfile',data,options);
+  }
+
 }
 

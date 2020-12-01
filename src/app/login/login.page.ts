@@ -48,14 +48,17 @@ export class LoginPage implements OnInit {
         }
         else{
           // console.log(res.uid);
-          this.toHomePage(res.uid);
+          this.toHomePage(res.uid, res.nama, res.username, res.image);
         }}
       );
     }
   }
 
-  async toHomePage(userId: any) {
+  async toHomePage(userId: any, nama: any, username: any, image: any) {
     await this.storage.set('userId', userId);
+    await this.storage.set('nama', nama);
+    await this.storage.set('username', username);
+    await this.storage.set('image', image);
     await this.navCtr.navigateForward(['/tabs/tab1']);
   }
 

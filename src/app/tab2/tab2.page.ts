@@ -23,6 +23,9 @@ export class Tab2Page {
   ) {}
   
   ngOnInit() {
+    
+  }
+  ionViewWillEnter(){
     this.storage.get('reward').then((getReward) => {
       // console.log(getReward);
       this.reward = getReward;
