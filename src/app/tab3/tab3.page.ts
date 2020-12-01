@@ -85,6 +85,7 @@ export class Tab3Page {
   }
   
   toLogout(){
+    this.storage.clear();
     this.route.navigateByUrl('/register');
   }
 

@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { MaungImage } from "src/assets";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { NgForOf } from '@angular/common';
 import { RegisterService } from '../service/register.service';
@@ -19,7 +19,7 @@ export class Tab1Page {
   public totalLevel: number = 100; // Total level dari kategori terakhir
   public arrayOfKategori = [];
 
-  constructor(public storage : Storage, public registerSrv : RegisterService) {
+  constructor(public storage : Storage, public registerSrv : RegisterService, public router : Router) {
   }
 
   ngOnInit() {
@@ -28,6 +28,10 @@ export class Tab1Page {
 
   ionViewWillEnter(){
     this.storage.get('userId').then((parameter) => {
+      console.log("tes :", parameter);
+      if(!parameter){
+        this.router.navigateByUrl('/register');
+      }
       this.getCategory(parameter);
       this.showScore(parameter);
     });

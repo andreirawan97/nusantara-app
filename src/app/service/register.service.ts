@@ -105,7 +105,6 @@ export class RegisterService {
 
   editProfile(user:any){
     const data = user;
-
     const headers = new HttpHeaders();
     headers.append('Content-Type,', 'application/x-www-form-urlencoded');
     const options = {headers: headers};
