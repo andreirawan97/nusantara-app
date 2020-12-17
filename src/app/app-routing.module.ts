@@ -13,6 +13,11 @@ const routes: Routes = [
       import("./login/login.module").then((m) => m.LoginPageModule),
   },
   {
+    path: "fotoprofile",
+    loadChildren: () =>
+      import("./fotoprofile/fotoprofile.module").then((m) => m.FotoprofilePageModule),
+  },
+  {
     path: "register",
     loadChildren: () =>
       import("./register/register.module").then((m) => m.RegisterPageModule),
